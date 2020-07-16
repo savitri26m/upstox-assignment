@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <a (click)="goBack()">Back</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img class="card-img-top img-fluid" style="width: 400px;" [src]="country.flag" alt="{{country.name}}">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>{{country.name}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-1" >Native Name: {{country.name}}</p>
+                    <p  class="mb-1" >Population: {{country.population}}</p>
+                    <p class="mb-1" >Region: {{country.region}}</p>
+                    <p class="mb-1" >Sub Region: {{country.subregion}}</p>
+                    <p class="mb-1" >Capital: {{country.capital}}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-1" >Native Name: {{country.nativeName}}</p>
+                    <div *ngFor="let curr of country.currencies">
+                        <span>Currencies: {{curr.name}}</span>
+                    </div>
+                    <div *ngFor="let lang of country.languages">
+                        <span>Languages: {{lang.name}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="showBorders">
+                <div class="col-md-12">
+                    Border Countries:
+                    <span class="" *ngFor="let bor of country.borders">
+                        <button type="button" class="btn btn-light border">{{bor }}</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

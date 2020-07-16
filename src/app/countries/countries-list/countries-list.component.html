@@ -1,0 +1,39 @@
+<div *ngIf="loaderProp" class="spinner"></div>
+<div class="row mt-3 mb-5">
+    <div class="col-md-6">
+        <form class="form-inline my-2 my-lg-0" >
+            <input class="form-control mr-sm-2" type="search" 
+            name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search for a country">
+        </form>
+        {{searchTerm}}
+    </div>
+    <div class="col-md-6">
+        <div class="dropdown float-right" appDropdown>
+            <button class="btn btn-secondary dropdown-toggle " type="button" >
+              Filter by region
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" [class.active]="filterByString === 'all' " (click)="filterCountries('all') " >All</a>
+              <a class="dropdown-item" [class.active]="filterByString === 'africa' " (click)="filterCountries('africa') " >Africa</a>
+              <a class="dropdown-item" [class.active]="filterByString === 'americas' " (click)="filterCountries('americas') " >Americas</a>
+              <a class="dropdown-item" [class.active]="filterByString === 'asia' " (click)="filterCountries('asia')  " >Aisa</a>
+              <a class="dropdown-item" [class.active]="filterByString === 'europe' " (click)="filterCountries('europe') " >Europe</a>
+              <a class="dropdown-item" [class.active]="filterByString === 'oceania' " (click)="filterCountries('oceania')  " >Oceania</a>
+            </div>
+          </div>
+          
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">  
+    <div class="card-deck">
+      <a style="width: 33.33%; cursor: pointer;" *ngFor="let c of filterCountriesData | filter:searchTerm ; let i = index;" class="mb-5">
+        <!-- sending data to child component -->
+        <div (click)="displayCountry(i)">
+          <app-countries-item [countryRec]="c" ></app-countries-item>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
